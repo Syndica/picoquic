@@ -1172,6 +1172,7 @@ void picoquic_finalize_and_protect_packet(picoquic_cnx_t *cnx,
             picoquic_queue_for_retransmit(cnx, path_x, packet, length, current_time);
             path_x->last_sent_time = current_time;
             path_x->bytes_sent += length;
+            printf("Packet sent, type: %d, sequence: %ld, length: %d\n", packet->ptype, packet->sequence_number, length);
         } else {
             *send_length = 0;
         }
@@ -2127,7 +2128,6 @@ int picoquic_prepare_packet_client_init(picoquic_cnx_t* cnx, picoquic_path_t * p
             picoquic_implicit_handshake_ack(cnx, picoquic_packet_context_initial, current_time);
             picoquic_crypto_context_free(&cnx->crypto_context[picoquic_epoch_initial]);
         }
-
         picoquic_finalize_and_protect_packet(cnx, packet,
             ret, length, header_length, checksum_overhead,
             send_length, send_buffer, send_buffer_max,

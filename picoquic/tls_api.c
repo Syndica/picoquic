@@ -341,6 +341,10 @@ static int picoquic_set_cipher_suite_in_ctx(ptls_context_t* ctx, int cipher_suit
     else {
         nb_suites = picoquic_set_cipher_suite_list(selected_suites, cipher_suite_id, use_low_memory);
 
+        for (int i = 0; i < nb_suites; i++) {
+            printf("Cipher suite[%d]: %s\n", i, selected_suites[i]->name);
+        }
+
         if (nb_suites == 0) {
             ctx->cipher_suites = NULL;
             ret = -1;

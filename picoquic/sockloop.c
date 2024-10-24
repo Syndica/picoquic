@@ -1013,6 +1013,7 @@ void* picoquic_packet_loop_v3(void* v_ctx)
                                     if (packet_index + packet_size > send_length) {
                                         packet_size = send_length - packet_index;
                                     }
+
                                     sock_ret = picoquic_sendmsg(send_socket,
                                         (struct sockaddr*)&peer_addr, (struct sockaddr*)&local_addr, if_index,
                                         (const char*)(send_buffer + packet_index), (int)packet_size, 0, &sock_err);

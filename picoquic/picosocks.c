@@ -1121,6 +1121,7 @@ int picoquic_sendmsg(SOCKET_TYPE fd,
 
     bytes_sent = sendmsg(fd, &msg, 0);
 
+    // printf("bytes_sent=%d addr_dest=%s", bytes_sent, (char *)addr_dest);
 
     if (bytes_sent <= 0) {
         int last_error = errno;
